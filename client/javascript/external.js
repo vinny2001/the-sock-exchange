@@ -5,17 +5,12 @@ async function getData() {
 };
 
 function updateHTML(socks) {
-    // Now we are sure that socks is defined and contains the data
-	document.querySelector('#size').innerHTML = 'Size: ' + socks.size;
-	document.querySelector('#color').innerHTML = 'Color: ' + socks.color;
-	document.querySelector('#pattern').innerHTML = 'Pattern: ' + socks.pattern;
-	document.querySelector('#material').innerHTML = 'Material: ' + socks.material;
-	document.querySelector('#condition').innerHTML = 'Condition: ' + socks.condition;
-	document.querySelector('#forFoot').innerHTML = 'For Foot: ' + socks.forFoot;
-    
-    if(socks.color === 'Blue') {
-        document.querySelector('#color').style.backgroundColor = 'lightblue'
-    }
+	for (let i = 0; i < socks.length; i++) {
+		let sock = socks[i];
+		let sockDiv = document.createElement('div');
+		sockDiv.innerHTML = `<div>Color: ${sock.color}</div><div>Size: ${sock.size}</div>`;
+		document.getElementById('data').appendChild(sockDiv);
+	}
 }
 
 // Call the function to fetch and update data
