@@ -13,6 +13,9 @@ function updateHTML(socks) {
 	document.querySelector('#condition').innerHTML = 'Condition: ' + socks.condition;
 	document.querySelector('#forFoot').innerHTML = 'For Foot: ' + socks.forFoot;
     
+    if(socks.color === 'Blue') {
+        document.querySelector('#color').style.backgroundColor = 'lightblue'
+    }
 }
 
 // Call the function to fetch and update data
