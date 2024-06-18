@@ -5,11 +5,22 @@ async function getData() {
 };
 
 function updateHTML(socks) {
+    
 	for (let i = 0; i < socks.length; i++) {
 		let sock = socks[i];
-		let sockDiv = document.createElement('div');
-		sockDiv.innerHTML = `<div>Color: ${sock.color}</div><div>Size: ${sock.size}</div>`;
-		document.getElementById('data').appendChild(sockDiv);
+		//Define table heading to append
+		let sockDiv = document.createElement('tr');
+		//Dynamically attach header
+		sockDiv.innerHTML = `
+							<td>${sock.size}</td>
+							<td>${sock.color}</td>
+							<td>${sock.pattern}</td>
+							<td>${sock.material}</td>
+							<td>${sock.condition}</td>
+							<td>${sock.forFoot}</td>`;
+		//Append to DOM
+		document.getElementById('data1').appendChild(sockDiv);
+	
 	}
 }
 
