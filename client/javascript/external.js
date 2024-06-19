@@ -1,15 +1,13 @@
 let counter = 1;
 
+//Retreive sock data from API asynchronously
 async function getData() {
 	try {
 		// Use fetch to retrieve data over the network from an API endpoint
 		urlEndpoint = `https://ecs.the-sock-exchange.com/api/socks/${counter}/10`;
-		const socks = await fetch(urlEndpoint).then(res => res.json());
-		console.log("10 Records Fetched!")
+		const socks = await fetch(urlEndpoint).then(res => res.json()); //url response dump
 		updateHTML(socks);  // Update HTML after data is fetched
-		// console.log("i: "+counter);
-		// console.log(urlEndpoint);
-		counter++;
+		counter++; //Move to next api endpoint url
 
 		// Modal when server response is empty (no more sock data)
 		if(socks.length === 0){
@@ -17,12 +15,14 @@ async function getData() {
 		}
 
 	} catch (error) {
-		console.error("Error: " + error);
+		console.error("Error: " + error); //Error Logging
+	} finally {
+		console.log("Attempt to retrieve sock data from API is complete!");
 	}
 };
 
+//Render Data to frontend
 function updateHTML(socks) {
-
 	//Refresh header and body after clicking next
 	if(document.getElementById('data1')){
 		document.getElementById('data1').innerHTML = "";
@@ -38,7 +38,7 @@ function updateHTML(socks) {
 		<th scope="col">material</th>
 		<th scope="col">condition</th>
 		<th scope="col">forFoot</th>
-	`
+	`;
 	//Append header to DOM
 	document.getElementById('data').appendChild(headerDiv);
     
