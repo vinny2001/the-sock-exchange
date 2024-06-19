@@ -17,7 +17,7 @@ async function getData() {
 		}
 
 	} catch (error) {
-		console.error("Error fetching socks:" + error);
+		console.error("Error: " + error);
 	}
 };
 
