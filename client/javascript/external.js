@@ -12,13 +12,17 @@ async function getData() {
 		// console.log(urlEndpoint);
 		counter++;
 	} catch (error) {
-		console.error("Error fetching socks:" `${error}`)
+		console.error("Error fetching socks:" + error);
 	}
 	
     
 };
 
 function updateHTML(socks) {
+
+	if(document.getElementById('data1')){
+		document.getElementById('data1').innerHTML = "";
+	}
     
 	for (let i = 0; i < socks.length; i++) {
 		let sock = socks[i];
