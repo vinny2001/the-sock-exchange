@@ -23,15 +23,29 @@ async function getData() {
 
 function updateHTML(socks) {
 
+	//Refresh header and body after clicking next
 	if(document.getElementById('data1')){
 		document.getElementById('data1').innerHTML = "";
+		document.getElementById('data').innerHTML = "";
 	}
+
+	//Table header generation
+	let headerDiv = document.createElement('tr');
+	headerDiv.innerHTML = `
+		<th scope="col">size</th>
+		<th scope="col">color</th>
+		<th scope="col">pattern</th>
+		<th scope="col">material</th>
+		<th scope="col">condition</th>
+		<th scope="col">forFoot</th>
+	`
+	//Append header to DOM
+	document.getElementById('data').appendChild(headerDiv);
     
 	for (let i = 0; i < socks.length; i++) {
 		let sock = socks[i];
-		//Define table heading to append
+		//Table body generation
 		let sockDiv = document.createElement('tr');
-		//Dynamically attach header
 		sockDiv.innerHTML = `
 			<td>${sock.sockDetails.size}</td>
 			<td>${sock.sockDetails.color}</td>
@@ -40,7 +54,7 @@ function updateHTML(socks) {
 			<td>${sock.sockDetails.condition}</td>
 			<td>${sock.sockDetails.forFoot}</td>
 		`;
-		//Append to DOM
+		//Append table body to DOM
 		document.getElementById('data1').appendChild(sockDiv);
 	}
 }
