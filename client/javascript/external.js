@@ -5,13 +5,15 @@ async function getData() {
 	try {
 		// Use fetch to retrieve data over the network from an API endpoint
 		urlEndpoint = `https://ecs.the-sock-exchange.com/api/socks/${counter}/10`;
-		const socks = await fetch(urlEndpoint).then(res => res.json()); //url response dump
+		const socks = await fetch(urlEndpoint)
+			.then(res => res.json()); //url response dump
 		updateHTML(socks);  // Update HTML after data is fetched
 		counter++; //Move to next api endpoint url
 
 		// Modal when server response is empty (no more sock data)
 		if(socks.length === 0){
 			alert("No more socks to retrieve from server. Please restart!");
+			location.reload(); //Refresh screen, resetting to first url
 		}
 
 	} catch (error) {
