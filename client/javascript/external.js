@@ -7,15 +7,18 @@ async function getData() {
 		const socks = await fetch(urlEndpoint).then(res => res.json());
 		console.log("10 Records Fetched!")
 		updateHTML(socks);  // Update HTML after data is fetched
-		
 		// console.log("i: "+counter);
 		// console.log(urlEndpoint);
 		counter++;
+
+		// Modal when server response is empty (no more sock data)
+		if(socks.length === 0){
+			alert("No more socks to retrieve from server. Please restart!");
+		}
+
 	} catch (error) {
 		console.error("Error fetching socks:" + error);
 	}
-	
-    
 };
 
 function updateHTML(socks) {
@@ -39,7 +42,6 @@ function updateHTML(socks) {
 		`;
 		//Append to DOM
 		document.getElementById('data1').appendChild(sockDiv);
-	
 	}
 }
 
