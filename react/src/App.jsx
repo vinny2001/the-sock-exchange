@@ -1,4 +1,5 @@
 // import './App.css'
+import './index.css';
 import Sock from "./components/Sock";
 import Promo from "./components/Promo";
 import sock_data from './assets/sock.json';
@@ -82,7 +83,8 @@ function App() {
               ))
             }
             </div>
-            <Footer environment="Development" />
+            <Footer environment={import.meta.env.VITE_ENVIRONMENT.toUpperCase()} 
+            className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""} />
           </div>
         </div>
       </main>
