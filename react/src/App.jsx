@@ -11,6 +11,9 @@ import Home from './components/Home';
 import About from './components/About';
 import Featured from './components/Featured';
 import AddSock from './components/AddSock';
+import RequireAuth from './components/RequireAuth';
+import LoginForm from './components/LoginForm';
+import { AuthProvider } from './hooks/AuthContext';
 import {
   BrowserRouter as Router,
   Route,
@@ -105,11 +108,18 @@ function App() {
           <div className="row">
             <Featured data={promo_data} />
             <hr></hr>
+            <AuthProvider>
             <Routes>
                 <Route exact path="/" element={<Home data={data} handleDelete={handleDelete} />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/add" element={<AddSock />} />
+                <Route path="/add" element={
+                  <RequireAuth>
+                      <AddSock />
+                  </RequireAuth>
+                } />
+                <Route path="/Login" element={<LoginForm />} />
             </Routes>
+            </AuthProvider>
             <Footer environment={import.meta.env.VITE_ENVIRONMENT.toUpperCase()} 
             className={import.meta.env.VITE_ENVIRONMENT === "development" ? "bg-yellow" : import.meta.env.VITE_ENVIRONMENT === "production" ? "bg-green" : ""} />
           </div>
